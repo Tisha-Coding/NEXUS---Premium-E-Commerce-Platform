@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
-import { BESTSELLER_PRODUCT_IDS } from "../constants/bestsellers";
 
 const BestSeller = () => {
   const { products } = useContext(ShopContext);
@@ -10,7 +9,7 @@ const BestSeller = () => {
 
   useEffect(() => {
     if (products?.length > 0) {
-      const bestsellers = products.filter((item) => BESTSELLER_PRODUCT_IDS.includes(item._id));
+      const bestsellers = products.filter((item) => item.bestSeller === true);
       setBestSeller(bestsellers.slice(0, 10));
     }
   }, [products]);

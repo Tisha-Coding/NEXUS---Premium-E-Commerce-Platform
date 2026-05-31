@@ -17,6 +17,7 @@ const Add = ({ token }) => {
   const [category, setCategory] = useState("MEN");
   const [subCategory, setSubCategory] = useState("Topwear");
   const [sizes, setSizes] = useState([]);
+  const [bestSeller, setBestSeller] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -66,6 +67,7 @@ const Add = ({ token }) => {
       formData.append("category", category);
       formData.append("subCategory", subCategory);
       formData.append("sizes", JSON.stringify(sizes));
+      formData.append("bestSeller", bestSeller);
 
       image1 && formData.append("image1", image1);
       image2 && formData.append("image2", image2);
@@ -89,6 +91,7 @@ const Add = ({ token }) => {
         setImage4(false);
         setPrice("");
         setSizes([]);
+        setBestSeller(false);
         setErrors({});
       } else {
         toast.dismiss(toastId);
@@ -314,6 +317,20 @@ const Add = ({ token }) => {
               ))}
             </div>
             {errors.sizes && <p className="text-red-500 text-xs mt-2">{errors.sizes}</p>}
+          </div>
+
+          {/* Best Seller Checkbox */}
+          <div className="flex items-center gap-3">
+            <input
+              id="bestSeller"
+              type="checkbox"
+              checked={bestSeller}
+              onChange={(e) => setBestSeller(e.target.checked)}
+              className="w-5 h-5 rounded border-gray-300 cursor-pointer"
+            />
+            <label htmlFor="bestSeller" className="text-sm font-medium text-gray-700 cursor-pointer">
+              Mark as Best Seller
+            </label>
           </div>
         </div>
 

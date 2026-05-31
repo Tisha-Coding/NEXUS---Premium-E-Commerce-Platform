@@ -39,6 +39,10 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  bestSeller: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // prevent creation of model again and again
